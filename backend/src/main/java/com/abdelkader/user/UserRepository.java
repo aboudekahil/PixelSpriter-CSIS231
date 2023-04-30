@@ -10,6 +10,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("SELECT u FROM users u LEFT OUTER JOIN FETCH u.images")
-    public List<User> findAllWithImagesAndAuthors();
+    public boolean existsByEmailAndPassword(String email, String password);
 }
