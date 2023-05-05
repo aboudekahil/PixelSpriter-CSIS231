@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,12 +32,12 @@ public class User {
 
     @CreatedDate
     @Column(name = "created_at", nullable = false)
-    private LocalDate created_at;
+    private LocalDateTime created_at;
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
-    private LocalDate updated_at;
+    private LocalDateTime updated_at;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
@@ -47,25 +48,16 @@ public class User {
     public User() {
     }
 
-    public User(
-            Integer id,
-            String username,
-            String password,
-            String email,
-            LocalDate created_at,
-            LocalDate updated_at,
-            Country country,
-            Set<Image> images) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
+    public User(Integer id, String username, String password, String email, LocalDateTime created_at, LocalDateTime updated_at, Country country, Set<Image> images) {
+        this.id         = id;
+        this.username   = username;
+        this.password   = password;
+        this.email      = email;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.country = country;
-        this.images = images;
+        this.country    = country;
+        this.images     = images;
     }
-
 
     public Integer getId() {
         return id;
@@ -99,19 +91,19 @@ public class User {
         this.email = email;
     }
 
-    public LocalDate getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
-    public void setCreated_at(LocalDate created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
-    public LocalDate getUpdated_at() {
+    public LocalDateTime getUpdated_at() {
         return updated_at;
     }
 
-    public void setUpdated_at(LocalDate updated_at) {
+    public void setUpdated_at(LocalDateTime updated_at) {
         this.updated_at = updated_at;
     }
 
@@ -134,14 +126,20 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
-                ", country=" + country +
-                ", images=" + images +
-                '}';
+               "id=" + id +
+               ", username='" + username + '\'' +
+               ", password='" + password + '\'' +
+               ", email='" + email + '\'' +
+               ", created_at=" + created_at +
+               ", updated_at=" + updated_at +
+               ", country=" + country +
+               ", images=" + images +
+               '}';
+    }
+
+    @PrePersist
+    protected void onCreate(){
+        created_at = LocalDateTime.now();
+        updated_at = LocalDateTime.now();
     }
 }

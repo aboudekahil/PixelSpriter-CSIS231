@@ -6,6 +6,10 @@ spring:
     url: jdbc:postgresql://localhost:5433/pixelspriter
     username: postgres
     password: root
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   jpa:
     properties:
       hibernate:
@@ -13,6 +17,7 @@ spring:
         format_sql: true
         hbm2ddl:
           auto: update
+
     show-sql: true
   main:
     web-application-type: servlet
