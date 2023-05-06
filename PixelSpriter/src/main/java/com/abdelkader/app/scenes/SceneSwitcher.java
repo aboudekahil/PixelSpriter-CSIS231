@@ -1,9 +1,9 @@
-package com.abdelkader.app.scenehandle;
+package com.abdelkader.app.scenes;
 
-import com.abdelkader.annotations.Component;
-import com.abdelkader.annotations.View;
+import com.abdelkader.meta.annotations.Component;
+import com.abdelkader.meta.annotations.View;
 import com.abdelkader.app.PixelSpriter;
-import com.abdelkader.interfaces.isController;
+import com.abdelkader.meta.interfaces.isController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 

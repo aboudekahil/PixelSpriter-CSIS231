@@ -1,7 +1,7 @@
-package com.abdelkader.app.login;
+package com.abdelkader.app.scenes.login;
 
-import com.abdelkader.annotations.View;
-import com.abdelkader.app.mycomponents.PixelArtButton;
+import com.abdelkader.meta.annotations.View;
+import com.abdelkader.app.akomponents.PixelArtButton;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -17,14 +17,10 @@ public class LoginView
     private final TextField emailTF;
     private final TextField passwordTF;
     private final Button    submitBtn;
-
     private final Hyperlink gotoSignUp;
-
-    private final Label wowLabel;
 
     public LoginView() {
         super(new VBox());
-
 
         Pane root = (Pane) getRoot();
 
@@ -46,8 +42,6 @@ public class LoginView
 
         gotoSignUp = new Hyperlink("Go to sign up");
 
-        wowLabel = new Label("WOW");
-
-        root.getChildren().addAll(emailLabel, emailTF, passwordLabel, passwordTF, submitBtn, gotoSignUp, wowLabel);
+        root.getChildren().addAll(emailLabel, emailTF, passwordLabel, passwordTF, submitBtn, gotoSignUp);
     }
 }

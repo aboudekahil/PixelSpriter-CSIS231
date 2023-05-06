@@ -1,7 +1,7 @@
 package com.abdelkader.app;
 
-import com.abdelkader.app.login.LoginView;
-import com.abdelkader.app.scenehandle.SceneSwitcher;
+import com.abdelkader.app.scenes.login.LoginView;
+import com.abdelkader.app.scenes.SceneSwitcher;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

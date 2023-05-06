@@ -1,6 +1,6 @@
-package com.abdelkader.annotations;
+package com.abdelkader.meta.annotations;
 
-import com.abdelkader.interfaces.isController;
+import com.abdelkader.meta.interfaces.isController;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

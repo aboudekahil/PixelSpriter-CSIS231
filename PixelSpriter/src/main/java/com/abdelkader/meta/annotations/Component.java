@@ -1,4 +1,4 @@
-package com.abdelkader.annotations;
+package com.abdelkader.meta.annotations;
 
 
 import java.lang.annotation.ElementType;
