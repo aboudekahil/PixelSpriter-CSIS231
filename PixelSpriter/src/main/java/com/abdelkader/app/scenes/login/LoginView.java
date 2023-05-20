@@ -3,10 +3,7 @@ package com.abdelkader.app.scenes.login;
 import com.abdelkader.meta.annotations.View;
 import com.abdelkader.app.akomponents.PixelArtButton;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -31,12 +28,12 @@ public class LoginView
         emailTF.setPromptText("Enter your email");
 
         Label passwordLabel = new Label("Password");
-        passwordTF = new TextField();
+        passwordTF = new PasswordField();
 
         passwordLabel.setLabelFor(passwordTF);
         passwordTF.setPromptText("Enter your password");
 
-        submitBtn = new PixelArtButton("Submit");
+        submitBtn = new PixelArtButton("Log in");
 
         submitBtn.setDefaultButton(true);
 

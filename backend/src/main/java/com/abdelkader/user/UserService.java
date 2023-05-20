@@ -25,7 +25,7 @@ public class UserService {
         user.setUsername(userDTO.username());
         user.setPassword(userDTO.password());
         user.setEmail(userDTO.email());
-        user.setCountry(countryRepository.getReferenceById(userDTO.country_id()));
+        user.setCountry(countryRepository.findById(userDTO.country_id()).orElseThrow());
 
         userRepository.save(user);
         return user;

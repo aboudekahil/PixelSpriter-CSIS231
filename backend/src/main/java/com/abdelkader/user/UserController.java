@@ -20,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authLogin(@RequestBody UserAuthDTO user) {
+    public ResponseEntity<?> authLogin(UserAuthDTO user) {
         if (userService.auth(user)) {
             return ResponseEntity.ok().build();
         }
@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping("signup")
     public ResponseEntity<User> signup(
-            @RequestBody UserCreationDTO user) {
+            UserCreationDTO user) {
 
         try {
             User saved = userService.createUser(user);

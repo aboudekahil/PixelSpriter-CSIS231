@@ -45,6 +45,7 @@ public class AKPixelArtCanvas extends StackPane {
         gridCanvas = new Canvas();
         toolTipCanvas = new Canvas();
 
+
         setStyle("-fx-border-color: #000;-fx-border-width: 2;");
 
         toolTipCanvas.widthProperty().bind(drawingCanvas.widthProperty());
@@ -60,7 +61,6 @@ public class AKPixelArtCanvas extends StackPane {
         setGridWidth(gridWidth);
         setGridHeight(gridHeight);
 
-
         gridRatioHeight = (int) Math.floor(drawingCanvas.getHeight() / gridWidthProperty.intValue());
         gridRatioWidth = (int) Math.floor(drawingCanvas.getWidth() / gridWidthProperty.intValue());
 
@@ -68,7 +68,9 @@ public class AKPixelArtCanvas extends StackPane {
         drawingCanvas.setWidth(gridRatioHeight * gridWidth);
 
         setMaxWidth(drawingCanvas.getWidth());
+        setMinWidth(drawingCanvas.getWidth());
         setMaxHeight(drawingCanvas.getHeight());
+        setMinHeight(drawingCanvas.getHeight());
 
         drawGrid();
 
@@ -79,8 +81,8 @@ public class AKPixelArtCanvas extends StackPane {
         Point2D result = new Point2D(x - drawingCanvas.getLayoutX(),
                                      y - drawingCanvas.getLayoutY());
 
-        result = new Point2D(Math.floor(result.getX() / gridRatioHeight),
-                             Math.floor(result.getY() / gridRatioHeight));
+        result = new Point2D((int) Math.floor(result.getX() / gridRatioHeight),
+                (int) Math.floor(result.getY() / gridRatioHeight));
 
         result = result.multiply(gridRatioHeight);
 
@@ -125,6 +127,10 @@ public class AKPixelArtCanvas extends StackPane {
     }
 
     public GraphicsContext getToolTipGraphicsContext(){return toolTipCanvas.getGraphicsContext2D();}
+
+    public Canvas getToolTipCanvas() {
+        return toolTipCanvas;
+    }
 
     private void drawGrid() {
         GraphicsContext gc = gridCanvas.getGraphicsContext2D();

@@ -20,6 +20,11 @@ public class DrawView extends Scene {
     private final AKColorPicker colorPicker;
     private final Rectangle currentColorRect;
     private final AKPixelArtCanvas canvas;
+    private final CheckMenuItem toggleGridMenuItem;
+    private final MenuItem clearCanvasMenuItem;
+
+    private final MenuItem newCanvasMenuItem;
+    private final MenuItem saveMenuItem;
 
     public DrawView(int[] size) {
         this(size[0], size[1]);
@@ -44,8 +49,8 @@ public class DrawView extends Scene {
 
         Menu fileMenu = new Menu("File");
 
-        MenuItem newCanvasMenuItem = new MenuItem("New");
-        MenuItem saveMenuItem = new MenuItem("Save to disk");
+        newCanvasMenuItem = new MenuItem("New");
+        saveMenuItem = new MenuItem("Save to disk");
         MenuItem saveAsMenuItem = new MenuItem("Save as to disk");
         MenuItem openMenuItem = new MenuItem("Open from disk");
         MenuItem saveToDatabaseItem = new MenuItem("Save to database");
@@ -61,8 +66,8 @@ public class DrawView extends Scene {
         );
 
         Menu canvasMenu = new Menu("Canvas");
-        MenuItem clearCanvasMenuItem = new MenuItem("Clear canvas");
-        CheckMenuItem toggleGridMenuItem = new CheckMenuItem("Show Grid");
+        clearCanvasMenuItem = new MenuItem("Clear canvas");
+        toggleGridMenuItem = new CheckMenuItem("Show Grid");
 
         canvasMenu.getItems().addAll(clearCanvasMenuItem, toggleGridMenuItem);
 
@@ -80,17 +85,5 @@ public class DrawView extends Scene {
         root.setRight(rightPanel);
         root.setCenter(canvasContainer);
         root.setTop(menuBar);
-    }
-
-    public AKColorPicker getColorPicker() {
-        return colorPicker;
-    }
-
-    public AKPixelArtCanvas getCanvas() {
-        return canvas;
-    }
-
-    public Rectangle getCurrentColorRect() {
-        return currentColorRect;
     }
 }

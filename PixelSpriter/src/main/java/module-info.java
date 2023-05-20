@@ -3,6 +3,9 @@ module PixelSpriter {
     requires okhttp3;
     requires java.desktop;
     requires javafx.swing;
+    requires com.google.gson;
+
+    opens com.abdelkader.backend.modals to com.google.gson;
 
     exports com.abdelkader.app;
     exports com.abdelkader.app.scenes;

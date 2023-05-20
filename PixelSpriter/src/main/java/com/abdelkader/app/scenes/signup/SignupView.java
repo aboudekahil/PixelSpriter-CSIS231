@@ -22,15 +22,18 @@ public class SignupView extends Scene {
 
         Label usernameLabel = new Label("Username");
         usernameTxtField = new TextField();
+        usernameTxtField.setPromptText("Enter your usersname");
 
         Label passwordLable = new Label("Password");
         passwordTxtField = new PasswordField();
+        passwordTxtField.setPromptText("Enter you password");
 
         Label emailLable = new Label("Email");
         emailTxtField = new TextField();
+        emailTxtField.setPromptText("Enter your email");
 
         Label countryLable = new Label("Country");
-        counrtyDropdown = new ComboBox<>(FXCollections.observableArrayList(new CountryModel(1, "Lb")));
+        counrtyDropdown = new ComboBox<>();
 
         submitBtn = new Button("Sign up");
         submitBtn.setDefaultButton(true);

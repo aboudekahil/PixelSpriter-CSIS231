@@ -47,6 +47,7 @@ public class SceneSwitcher {
                     throw new IllegalArgumentException("No matching constructor found for " + clazz.getName());
                 }
                 instance = (Scene) constructor.newInstance(args);
+
             }
 
             initController(instance);
