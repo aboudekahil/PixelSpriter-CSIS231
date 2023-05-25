@@ -3,6 +3,7 @@
   <component name="EntryPointsManager">
     <writeAnnotations>
       <writeAnnotation name="com.abdelkader.annotations.Component" />
+      <writeAnnotation name="com.abdelkader.meta.annotations.Component" />
     </writeAnnotations>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />

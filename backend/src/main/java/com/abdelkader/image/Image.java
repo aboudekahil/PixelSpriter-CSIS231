@@ -6,11 +6,10 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity(name = "images")
-@Table(name = "images")
+@Table(name = "images",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"title", "author"}))
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,13 +39,9 @@ public class Image {
     @Column(name = "grid_height", nullable = false)
     private Integer grid_height;
 
-    @ManyToMany
-    @JoinTable(
-            name = "`authors`",
-            joinColumns = @JoinColumn(name = "userid"),
-            inverseJoinColumns = @JoinColumn(name = "imageid")
-    )
-    private Set<User> authors = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "author", nullable = false)
+    private User author;
 
     public Image() {
     }
@@ -59,7 +54,7 @@ public class Image {
                  LocalDate created_at,
                  Integer grid_width,
                  Integer grid_height,
-                 Set<User> authors) {
+                 User author) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -68,7 +63,7 @@ public class Image {
         this.created_at = created_at;
         this.grid_width = grid_width;
         this.grid_height = grid_height;
-        this.authors = authors;
+        this.author = author;
     }
 
     public Integer getId() {
@@ -135,12 +130,12 @@ public class Image {
         this.grid_height = grid_height;
     }
 
-    public Set<User> getAuthors() {
-        return authors;
+    public User getAuthor() {
+        return author;
     }
 
-    public void setAuthors(Set<User> authors) {
-        this.authors = authors;
+    public void setAuthor(User authors) {
+        this.author = authors;
     }
 
     @Override
@@ -154,7 +149,7 @@ public class Image {
                 ", created_at=" + created_at +
                 ", grid_width=" + grid_width +
                 ", grid_height=" + grid_height +
-                ", authors=" + authors +
+                ", author=" + author +
                 '}';
     }
 }

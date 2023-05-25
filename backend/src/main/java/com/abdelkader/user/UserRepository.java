@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    public boolean existsByEmailAndPassword(String email, String password);
+    public User findByEmailAndPassword(String email, String password);
 }

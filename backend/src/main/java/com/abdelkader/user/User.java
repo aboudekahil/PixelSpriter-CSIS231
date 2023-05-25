@@ -6,9 +6,7 @@ import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "users")
@@ -41,22 +39,22 @@ public class User {
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
 
-    @ManyToMany(mappedBy = "authors")
-    private Set<Image> images = new HashSet<>();
+    @OneToMany(mappedBy = "author")
+    private Set<Image> images;
 
 
     public User() {
     }
 
     public User(Integer id, String username, String password, String email, LocalDateTime created_at, LocalDateTime updated_at, Country country, Set<Image> images) {
-        this.id         = id;
-        this.username   = username;
-        this.password   = password;
-        this.email      = email;
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
         this.created_at = created_at;
         this.updated_at = updated_at;
-        this.country    = country;
-        this.images     = images;
+        this.country = country;
+        this.images = images;
     }
 
     public Integer getId() {
@@ -115,6 +113,7 @@ public class User {
         this.country = country;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
     public Set<Image> getImages() {
         return images;
     }
@@ -126,19 +125,19 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-               "id=" + id +
-               ", username='" + username + '\'' +
-               ", password='" + password + '\'' +
-               ", email='" + email + '\'' +
-               ", created_at=" + created_at +
-               ", updated_at=" + updated_at +
-               ", country=" + country +
-               ", images=" + images +
-               '}';
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
+                ", country=" + country +
+                ", images=" + images +
+                '}';
     }
 
     @PrePersist
-    protected void onCreate(){
+    protected void onCreate() {
         created_at = LocalDateTime.now();
         updated_at = LocalDateTime.now();
     }

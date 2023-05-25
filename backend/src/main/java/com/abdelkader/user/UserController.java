@@ -1,13 +1,12 @@
 package com.abdelkader.user;
 
-import com.abdelkader.country.CountryRepository;
-import jakarta.persistence.EntityManager;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -20,21 +19,26 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authLogin(UserAuthDTO user) {
-        if (userService.auth(user)) {
-            return ResponseEntity.ok().build();
+    public ResponseEntity<UserDTO> authLogin(UserAuthDTO user) {
+        Optional<User> userFromDb = userService.auth(user);
+        if (userFromDb.isPresent()) {
+            UserDTO toSend = new UserDTO(userFromDb.get().getEmail(),
+                    userFromDb.get().getUsername(),
+                    userFromDb.get().getId());
+            return ResponseEntity.ok(toSend);
         }
         // else
         return ResponseEntity.notFound().build();
     }
 
     @PostMapping("signup")
-    public ResponseEntity<User> signup(
+    public ResponseEntity<UserDTO> signup(
             UserCreationDTO user) {
 
         try {
             User saved = userService.createUser(user);
-            return ResponseEntity.ok(saved);
+            UserDTO toSend = new UserDTO(saved.getEmail(), saved.getUsername(), saved.getId());
+            return ResponseEntity.ok(toSend);
         }catch (DataAccessException dataAccessException){
             return ResponseEntity.badRequest().build();
         }

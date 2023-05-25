@@ -75,7 +75,7 @@ public class SceneSwitcher {
 
         isController
                 controller =
-                (isController) instance.getClass().getAnnotation(View.class).controller()
+                instance.getClass().getAnnotation(View.class).controller()
                                        .getDeclaredConstructor()
                                        .newInstance();
 
@@ -115,6 +115,5 @@ public class SceneSwitcher {
 
 
         controller.init();
-
     }
 }

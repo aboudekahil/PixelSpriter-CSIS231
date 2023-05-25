@@ -16,8 +16,8 @@ public class UserService {
         this.countryRepository = countryRepository;
     }
 
-    public boolean auth(UserAuthDTO user) {
-        return userRepository.existsByEmailAndPassword(user.email(), user.password());
+    public Optional<User> auth(UserAuthDTO user) {
+        return Optional.of(userRepository.findByEmailAndPassword(user.email(), user.password()));
     }
 
     public User createUser(UserCreationDTO userDTO) {
@@ -29,5 +29,9 @@ public class UserService {
 
         userRepository.save(user);
         return user;
+    }
+
+    public User getUserById(Integer id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

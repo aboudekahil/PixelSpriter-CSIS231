@@ -4,6 +4,7 @@ module PixelSpriter {
     requires java.desktop;
     requires javafx.swing;
     requires com.google.gson;
+    requires java.sql;
 
     opens com.abdelkader.backend.modals to com.google.gson;
 
